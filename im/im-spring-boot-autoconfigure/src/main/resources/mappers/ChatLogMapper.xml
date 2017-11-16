@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--
+       Copyright 2015-2016 the original author or authors.
+       Licensed under the Apache License, Version 2.0 (the "License");
+       you may not use this file except in compliance with the License.
+       You may obtain a copy of the License at
+          http://www.apache.org/licenses/LICENSE-2.0
+       Unless required by applicable law or agreed to in writing, software
+       distributed under the License is distributed on an "AS IS" BASIS,
+       WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+       See the License for the specific language governing permissions and
+       limitations under the License.
+-->
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.readbean.im.mapper.ChatLogMapper">
+  <resultMap id="chatLogMap" type="com.readbean.im.domain.ChatLog">
+    <result property="id" column="id" />
+    <result property="createdDate" column="created_date" />
+    <result property="updatedDate" column="updated_date" />
+    <result property="createdBy" column="created_by" />
+    <result property="updatedBy" column="updated_date" />
+    <result property="fromUserId" column="from_user_id" />
+    <result property="toUserId" column="to_user_id" />
+    <result property="content" column="content" />
+
+    <result property="userName" column="user_name"/>
+    <result property="avatar" column="avatar"/>
+  </resultMap>
+
+
+  <select id="queryAllChatLogs" resultMap="chatLogMap">
+    select
+      t.id,
+      t.to_user_id,
+        fu.name user_name,
+        t.from_user_id ,
+        fu.avatar,
+        t.created_date,
+        t.created_by as timestamp,
+        t.content
+    from
+        chat_log t,
+        user fu,
+        user tou
+    where
+        t.from_user_id = fu.id
+            and t.to_user_id = tou.id
+            and ((t.to_user_id = #{param.toUserId}  and t.from_user_id = #{param.fromUserId})
+              or (t.from_user_id = #{param.toUserId} and t.to_user_id = #{param.fromUserId})
+              )
+    order by t.created_date desc
+  </select>
+
+
+</mapper>

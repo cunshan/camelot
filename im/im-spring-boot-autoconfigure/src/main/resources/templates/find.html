@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>查找</title>
+  <link rel="stylesheet" href="/third/layim/css/layui.css"/>
+  <style>
+    .mgp_win{
+      width: 200px;
+      border: 1px #f8f8f8 solid;
+      position: absolute;
+      top: 0px;
+      right: -200px;
+      background-color: #fff;
+      bottom: 0;
+    }
+    .layim-chat-box{
+      padding-right:200px;
+    }
+  </style>
+</head>
+<body>
+<div style="width: 200px;">
+  <form class="layui-form layui-form-pane" action="">
+    <div class="layui-form-item" pane>
+      <label class="layui-form-label">订单</label>
+      <div class="layui-input-block">
+        <input name="title" required="" lay-verify="required" placeholder="单号" autocomplete="off" class="layui-input">
+      </div>
+    </div>
+    <div class="layui-btn-group">
+      <button class="layui-btn ">
+        <i class="layui-icon">&#xe615;</i>
+      </button>
+      <button class="layui-btn ">
+        <i class="layui-icon">&#xe640;</i>
+      </button>
+    </div>
+  </form>
+
+</div>
+</body>
+</html>
