@@ -1,4 +1,4 @@
-package com.camelot.im;
+package com.camelot.im.samples;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
